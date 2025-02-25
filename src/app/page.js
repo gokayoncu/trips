@@ -65,11 +65,16 @@ export default function Home() {
     return matches;
   });
 
+  // Eşleşen ürün yoksa mesajı göstermek için bir kontrol ekleyelim
+  const noResults = filteredTours.length === 0 && !loading;
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background mt-20">
       <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
         {loading ? (
           <p className="text-center text-foreground">Loading tours...</p>
+        ) : noResults ? (
+          <p className="text-center text-foreground">Ürün yok</p>
         ) : filteredTours.length > 0 ? (
           filteredTours.map((tour) => (
             <TourCard key={tour.id} tour={tour} clickedTours={clickedTours} setClickedTours={setClickedTours} />
