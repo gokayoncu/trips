@@ -17,7 +17,9 @@ export default function Home() {
       .then((data) => {
         setTours(data);
         setLoading(false);
-        localStorage.setItem('tours', JSON.stringify(data));
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('tours', JSON.stringify(data));
+        }
       })
       .catch((error) => {
         console.error('Fetch error:', error);

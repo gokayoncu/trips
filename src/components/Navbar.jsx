@@ -4,6 +4,7 @@ import React,{ useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import FilterPopup from "./FilterPopup"
+
 export default function Navbar({filtereTours, setFiltereTours}) {
   const [isFilterOpen, setIsFilterOpen] = useState(false)
 
@@ -22,16 +23,16 @@ export default function Navbar({filtereTours, setFiltereTours}) {
           <Image src="/icon.png" alt="Logo" width={30} height={30} />
         </Link>
         <div className="flex gap-4">
-        <Link href="/favorites">
-          <FaHeart className="text-2xl cursor-pointer" />
-        </Link>
-        <Link href="/cart">
-          <FaShoppingCart className="text-2xl cursor-pointer" />
-        </Link>
-        <Link href="/profile">
-          <FaUser className="text-2xl cursor-pointer" />
-        </Link>
-      </div>
+          <Link href="/favorites">
+            <FaHeart className="text-2xl cursor-pointer" />
+          </Link>
+          <Link href="/cart">
+            <FaShoppingCart className="text-2xl cursor-pointer" />
+          </Link>
+          <Link href="/profile">
+            <FaUser className="text-2xl cursor-pointer" />
+          </Link>
+        </div>
       </nav>
 
       {/* Filter Modal */}

@@ -14,15 +14,20 @@ export const FilterProvider = ({ children }) => {
         features: null,
         location: ""
     });
+
+    // Kullanıcı verisini localStorage'a kaydediyoruz
     const userData = {
         name: "Users",
         email: "users@user.com",
         phone: "+90 555 123 45 67",
         address: "İstanbul, Türkiye",
-      };
-      
-      // Kullanıcı verisini localStorage'a kaydediyoruz.
-      localStorage.setItem("user", JSON.stringify(userData));
+    };
+
+    // Tarayıcıda olup olmadığımızı kontrol ediyoruz
+    if (typeof window !== 'undefined') {
+        localStorage.setItem("user", JSON.stringify(userData));
+    }
+
     useEffect(() => {
         const storedFilters = JSON.parse(localStorage.getItem("tourFilters")) || {};
         setFilters(storedFilters);
@@ -30,7 +35,9 @@ export const FilterProvider = ({ children }) => {
 
     // Filtreler değiştiğinde, güncellenmiş filtreleri localStorage'a kaydedelim
     useEffect(() => {
-        localStorage.setItem('tourFilters', JSON.stringify(filters));
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('tourFilters', JSON.stringify(filters));
+        }
     }, [filters]);
 
     return (
